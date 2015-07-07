@@ -1,0 +1,27 @@
+{
+  "name": "isofetcher",
+  "main": "fetcher.js",
+  "version": "0.0.4",
+  "homepage": "https://github.com/ZeroMcMuffin/fetcher",
+  "authors": [
+    "ZeroMcMuffin <zeromcmuffin@gmail.com>"
+  ],
+  "description": "Fetch-based REST Api requests for the browser and Node.js",
+  "keywords": [
+    "REST",
+    "Fetch"
+  ],
+  "dependencies": {
+    "es6-promise": "~2.1.0",
+    "fetch": "~0.7.0",
+    "resturlify": "~1.0.0"
+  },
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
