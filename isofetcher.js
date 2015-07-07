@@ -2,7 +2,7 @@
 
 
 var RestResource = function(options) {
-  var fqBaseUrl = options.fqBaseUrl;
+  var fqBaseUrl = options.fqBaseUrl || '';
   var resource = options.resource || '';
 
   if (typeof module !== 'undefined' && module.exports) {
