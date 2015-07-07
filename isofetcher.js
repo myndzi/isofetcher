@@ -2,7 +2,7 @@
 
 
 var RestResource = function(options) {
-  var fqBaseUrl = options.fqBaseUrl || 'http://localhost:3000';
+  var fqBaseUrl = options.fqBaseUrl;
   var resource = options.resource || '';
 
   if (typeof module !== 'undefined' && module.exports) {
