@@ -1,2 +1,2 @@
-# fetcher
-Fetch-based REST requests for the browser and Node.js
+# isofetcher
+Fetch-based REST API requests for the browser and Node.js. 
