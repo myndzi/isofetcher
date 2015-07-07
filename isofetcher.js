@@ -57,5 +57,5 @@ var IsoFetcher = function(options) {
 if (typeof module === 'object' && module.exports) {
   module.exports = IsoFetcher;
 } else {
-  window.Fetcher = IsoFetcher;
+  window.IsoFetcher = IsoFetcher;
 }
