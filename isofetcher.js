@@ -8,6 +8,9 @@ var RestResource = function(options) {
   if (typeof module !== 'undefined' && module.exports) {
     var fetch = require('node-fetch');
     var RestUrlify = require('resturlify');
+  } else {
+    var RestUrlify = window.RestUrlify;
+    var fetch = window.fetch;
   }
 
   var request = function(options, method) {
@@ -20,7 +23,7 @@ var RestResource = function(options) {
     return fetch(url, options)
       .then(function(res){
         return res.json();
-    });
+      });
   };
 
   return {
@@ -42,7 +45,7 @@ var RestResource = function(options) {
   };
 };
 
-var Fetcher = function(options) {
+var IsoFetcher = function(options) {
   var api = {};
   options.resources.forEach( function (resource) {
     api[resource + ''] = new RestResource( {resource: resource, fqBaseUrl: options.fqBaseUrl, fetch: options.fetch} );
@@ -52,7 +55,7 @@ var Fetcher = function(options) {
 
 
 if (typeof module === 'object' && module.exports) {
-  module.exports = Fetcher;
+  module.exports = IsoFetcher;
 } else {
-  window.Fetcher = Fetcher;
+  window.Fetcher = IsoFetcher;
 }

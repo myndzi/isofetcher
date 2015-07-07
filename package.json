@@ -2,7 +2,7 @@
   "name": "isofetcher",
   "version": "0.0.3",
   "description": "Fetch-based REST calls for the browser and Node.js",
-  "main": "Fetcher.js",
+  "main": "isofetcher.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

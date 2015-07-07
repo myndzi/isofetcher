@@ -1,6 +1,6 @@
 {
   "name": "isofetcher",
-  "main": "fetcher.js",
+  "main": "isofetcher.js",
   "version": "0.0.4",
   "homepage": "https://github.com/ZeroMcMuffin/fetcher",
   "authors": [
