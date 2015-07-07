@@ -1,0 +1,26 @@
+{
+  "name": "isofetcher",
+  "version": "0.0.2",
+  "description": "Fetch-based REST calls for the browser and Node.js",
+  "main": "Fetcher.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ZeroMcMuffin/fetcher.git"
+  },
+  "keywords": [
+    "Fetch",
+    "REST"
+  ],
+  "author": "ZeroMcMuffin <allen.el@darksideproductions.net> (http://allenelks.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ZeroMcMuffin/fetcher/issues"
+  },
+  "homepage": "https://github.com/ZeroMcMuffin/fetcher",
+  "dependencies": {
+    "resturlify": "^1.0.0"
+  }
+}
