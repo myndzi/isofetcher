@@ -48,7 +48,7 @@ var RestResource = function(options) {
 var IsoFetcher = function(options) {
   var api = {};
   options.resources.forEach( function (resource) {
-    api[resource + ''] = new RestResource( {resource: resource, fqBaseUrl: options.fqBaseUrl, fetch: options.fetch} );
+    api[resource + ''] = new RestResource( {resource: resource, fqBaseUrl: options.fqBaseUrl} );
   });
   return api;
 };
