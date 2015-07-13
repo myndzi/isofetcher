@@ -12,14 +12,14 @@ var RestResource = function(options) {
     var RestUrlify = window.RestUrlify;
     var fetch = window.fetch;
   }
+  var urlTools = RestUrlify(fqBaseUrl);
 
   var request = function(options, method) {
     options = options || {};
     options.resource = resource;
-    options.baseUrl = fqBaseUrl;
     options.method = method;
 
-    var url = RestUrlify.url(options);
+    var url = urlTools.buildUrl(options);
     return fetch(url, options)
       .then(function(res){
         return res.json();

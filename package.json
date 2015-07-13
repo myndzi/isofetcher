@@ -21,6 +21,6 @@
   },
   "homepage": "https://github.com/ZeroMcMuffin/fetcher",
   "dependencies": {
-    "resturlify": "^1.0.0"
+    "resturlify": "^1.2.0"
   }
 }
