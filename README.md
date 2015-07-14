@@ -27,9 +27,33 @@ var fetcher = isofetcher({resources: ['foo','bar'], fqBaseUrl: 'https://www.web.
 ```
 
 #### Basic Usage
-You can now execute fetch request with the following syntax: fetcher.<resource>.<http-method>(options);
 ##### GET
 ```javascript
 fetcher.foo.get();
 ```
+Generates GET https://www.web.com/api
+
+##### PUT
+```javascript
+fetcher.foo.put({id:1});
+```
+Generates PUT https://www.web.com/api/1
+
+##### POST
+```javascript
+fetcher.foo.post({body: {payload:1});
+```
+Generates POST https://www.web.com/api
+
+##### PATCH
+```javascript
+fetcher.foo.get({id: 1});
+```
+Generates PATCH https://www.web.com/api/1
+
+##### DELETE
+```javascript
+fetcher.foo.get({id:1});
+```
+Generates DELETE https://www.web.com/api/1
 
