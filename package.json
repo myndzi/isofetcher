@@ -1,6 +1,6 @@
 {
   "name": "isofetcher",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Fetch-based REST calls for the browser and Node.js",
   "main": "isofetcher.js",
   "scripts": {
