@@ -7,7 +7,7 @@ var RestResource = function(options) {
 
   if (typeof module !== 'undefined' && module.exports) {
     var fetch = require('node-fetch');
-    var RestUrlify = require('RestUrlify');
+    var RestUrlify = require('resturlify');
   } else {
     var RestUrlify = window.RestUrlify;
     var fetch = window.fetch;
