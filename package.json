@@ -1,6 +1,6 @@
 {
   "name": "isofetcher",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Fetch-based REST calls for the browser and Node.js",
   "main": "isofetcher.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ZeroMcMuffin/fetcher.git"
+    "url": "https://github.com/ZeroMcMuffin/isofetcher"
   },
   "keywords": [
     "Fetch",
@@ -21,6 +21,6 @@
   },
   "homepage": "https://github.com/ZeroMcMuffin/fetcher",
   "dependencies": {
-    "resturlify": "^1.2.0"
+    "resturlify": "^1.3.0"
   }
 }
