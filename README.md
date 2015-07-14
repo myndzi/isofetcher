@@ -40,19 +40,19 @@ fetcher.bar.get({customMethod: 'children');
 Generates GET https://www.web.com/api/bar/children
 
 ```javascript
-fetcher.foo.get({customMethod: 'children', id:1);
+fetcher.foo.get({customMethod: 'children', id: 1);
 ```
 Generates GET https://www.web.com/api/foo/1/children
 
 ##### PUT
 ```javascript
-fetcher.foo.put({id:1});
+fetcher.foo.put({id: 1});
 ```
 Generates PUT https://www.web.com/api/foo/1
 
 ##### POST
 ```javascript
-fetcher.bar.post({body: {payload:1});
+fetcher.bar.post({body: {payload: 1});
 ```
 Generates POST https://www.web.com/api/bar/1
 
@@ -64,7 +64,7 @@ Generates PATCH https://www.web.com/api/foo/1
 
 ##### DELETE
 ```javascript
-fetcher.foo.get({id:1});
+fetcher.foo.get({id: 1});
 ```
 Generates DELETE https://www.web.com/api/foo/1
 
