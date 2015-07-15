@@ -60,7 +60,7 @@ Generates PUT https://www.web.com/api/foo/1
 ```javascript
 fetcher.bar.post({body: {payload: 1});
 ```
-Generates POST https://www.web.com/api/bar/1
+Generates POST https://www.web.com/api/bar
 
 ##### PATCH
 ```javascript
