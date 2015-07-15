@@ -33,6 +33,12 @@ fetcher.foo.get();
 ```
 Generates GET https://www.web.com/api/foo
 
+##### Query Parameters
+```javascript
+fetcher.bar.get({query: {id: 1});
+```
+Generates GET https://www.web.com/api/bar?id=1
+
 ##### Custom Methods
 ```javascript
 fetcher.bar.get({customMethod: 'children');
