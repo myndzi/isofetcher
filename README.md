@@ -35,7 +35,7 @@ Generates GET https://www.web.com/api/foo
 
 ##### Query Parameters
 ```javascript
-fetcher.bar.get({query: {id: 1});
+fetcher.bar.get({query: {id: 1}});
 ```
 Generates GET https://www.web.com/api/bar?id=1
 
