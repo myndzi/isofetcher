@@ -22,7 +22,12 @@ var RestResource = function(options) {
     var url = urlTools.buildUrl(options);
     return fetch(url, options)
       .then(function(res){
-        return res.json();
+        
+        if (res.headers['content-type'] === 'application/json') {
+          return res.json();
+        } else {
+          return res;
+        }
       });
   };
 
