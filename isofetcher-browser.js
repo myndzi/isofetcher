@@ -1,4 +1,4 @@
 var fetch = window.fetch;
-var RestUrlify = window.RestUrlify; // this should probably use require() instead
+var RestUrlify = require('resturlify');
 
-window.IsoFetcher = require('./isofetcher')(fetch, RestUrlify);
+module.exports = require('./isofetcher')(fetch, RestUrlify);

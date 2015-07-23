@@ -1,8 +1,7 @@
 'use strict';
 
 module.exports = function (fetch, RestUrlify) {
-
-  var RestResource = function(options) {
+  function RestResource(options) {
     var fqBaseUrl = options.fqBaseUrl || '';
     var resource = options.resource || '';
 
@@ -39,10 +38,10 @@ module.exports = function (fetch, RestUrlify) {
     };
   };
 
-  var IsoFetcher = function(options) {
+  function IsoFetcher(options) {
     var api = {};
     options.resources.forEach( function (resource) {
-      api[resource + ''] = new RestResource( {resource: resource, fqBaseUrl: options.fqBaseUrl} );
+      api[resource] = RestResource( {resource: resource, fqBaseUrl: options.fqBaseUrl} );
     });
     return api;
   };
