@@ -1,71 +1,51 @@
 'use strict';
 
+module.exports = function (fetch, RestUrlify) {
 
-var RestResource = function(options) {
-  var fqBaseUrl = options.fqBaseUrl || '';
-  var resource = options.resource || '';
+  var RestResource = function(options) {
+    var fqBaseUrl = options.fqBaseUrl || '';
+    var resource = options.resource || '';
 
-  if (typeof module !== 'undefined' && module.exports) {
-    var fetch = require('node-fetch');
-    var RestUrlify = require('resturlify');
-  } else {
-    var RestUrlify = window.RestUrlify;
-    var fetch = window.fetch;
-  }
-  var urlTools = RestUrlify(fqBaseUrl);
+    var urlTools = RestUrlify(fqBaseUrl);
 
-  var request = function(options, method) {
-    options = options || {};
-    options.resource = resource;
-    options.method = method;
+    var request = function(options, method) {
+      options = options || {};
+      options.resource = resource;
+      options.method = method;
 
-    var url = urlTools.buildUrl(options);
-    return fetch(url, options)
-      .then(function(res){
-        if (res.status !== 200) {
-          var err = new Error('Unexpected response: ' + res.status + ' ' + res.statusText);
-          err.status = res.status;
-          err.statusText = res.statusText;
-          throw err;
-        }
-        if (res.headers['content-type'] === 'application/json') {
+      var url = urlTools.buildUrl(options);
+      return fetch(url, options)
+        .then(function(res){
           return res.json();
-        } else {
-          return res;
-        }
-      });
+        });
+    };
+
+    return {
+      get: function(options) {
+        return request(options, 'GET');
+      },
+      put: function(options) {
+        return request(options, 'PUT');
+      },
+      post: function(options) {
+        return request(options, 'POST');
+      },
+      patch: function(options) {
+        return request(options, 'PATCH');
+      },
+      delete: function(options) {
+        return request(options, 'DELETE');
+      }
+    };
   };
 
-  return {
-    get: function(options) {
-      return request(options, 'GET');
-    },
-    put: function(options) {
-      return request(options, 'PUT');
-    },
-    post: function(options) {
-      return request(options, 'POST');
-    },
-    patch: function(options) {
-      return request(options, 'PATCH');
-    },
-    delete: function(options) {
-      return request(options, 'DELETE');
-    }
+  var IsoFetcher = function(options) {
+    var api = {};
+    options.resources.forEach( function (resource) {
+      api[resource + ''] = new RestResource( {resource: resource, fqBaseUrl: options.fqBaseUrl} );
+    });
+    return api;
   };
+
+  return IsoFetcher;
 };
-
-var IsoFetcher = function(options) {
-  var api = {};
-  options.resources.forEach( function (resource) {
-    api[resource + ''] = new RestResource( {resource: resource, fqBaseUrl: options.fqBaseUrl} );
-  });
-  return api;
-};
-
-
-if (typeof module === 'object' && module.exports) {
-  module.exports = IsoFetcher;
-} else {
-  window.IsoFetcher = IsoFetcher;
-}
