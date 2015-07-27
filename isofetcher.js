@@ -13,9 +13,34 @@ module.exports = function (fetch, RestUrlify) {
       options.method = method;
 
       var url = urlTools.buildUrl(options);
+      function err(msg, status, text) {
+        var err = new Error(msg);
+        err.source = 'isofetcher';
+        err.details = {
+          status: status || 500,
+          statusText: text || 'Unknown',
+          method: method,
+          url: url,
+          options: options
+        };
+        return err;
+      }
       return fetch(url, options)
         .then(function(res){
-          return res.json();
+          if (res.status !== 200) {
+            throw err('HTTP ' + res.status + ' ' + res.statusText, res.status, res.statusText);
+          }
+          
+          var contentType = res.headers.get('content-type');
+          if (contentType !== 'application/json') {
+            throw err('Expected Content-Type: application/json, got ' + res.headers['content-type'], 400, 'Bad response Content-Type');
+          }
+          
+          try {
+            return res.json();
+          } catch (e) {
+            throw err('Unable to decode json: ' + e.message, 500, 'Internal server error');
+          }
         });
     };
 
