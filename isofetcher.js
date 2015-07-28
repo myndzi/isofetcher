@@ -45,12 +45,14 @@ module.exports = function (fetch, RestUrlify) {
           }
           
           // we are assuming json in this library, so any other content type is a problem
+          /*
           var contentType = res.headers.get('content-type');
           if (contentType !== 'application/json') {
             throw err('Expected Content-Type: application/json, got ' +
                       res.headers.get('content-type'),
                       400, 'Bad response Content-Type');
           }
+          */
           
           try {
             return res.json();
