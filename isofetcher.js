@@ -27,14 +27,32 @@ module.exports = function (fetch, RestUrlify) {
       }
       return fetch(url, options)
         .then(function(res){
-          if (res.status !== 200) {
-            throw err('HTTP ' + res.status + ' ' + res.statusText, res.status, res.statusText);
+          var status = res.status + ' ' + res.statusText;
+          // 400 = client error, 500 = server error; we do the same thing either way
+          if (res.status >= 400) {
+            throw err('HTTP ' + status, res.status, res.statusText);
+          }
+          // 300 = redirect, this should probably be followed, but is it our job? most likely
+          // we are making a request to the wrong place to begin with and should fix it
+          if (res.status >= 300) {
+            throw err('Unexpected redirect: ' + status + ': ' +
+                      res.headers.get('location'),
+                      res.status, res.statusText);
+          }
+          // 100 = informational, it's not what we were expecting either
+          if (res.status < 200) {
+            throw err('Unexpected status code: ' + status, res.status, res.statusText);
           }
           
+          // we are assuming json in this library, so any other content type is a problem
+          /*
           var contentType = res.headers.get('content-type');
           if (contentType !== 'application/json') {
-            throw err('Expected Content-Type: application/json, got ' + res.headers['content-type'], 400, 'Bad response Content-Type');
+            throw err('Expected Content-Type: application/json, got ' +
+                      res.headers.get('content-type'),
+                      400, 'Bad response Content-Type');
           }
+          */
           
           try {
             return res.json();
