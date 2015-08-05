@@ -13,7 +13,7 @@ module.exports = function (fetch, RestUrlify) {
       options.method = method;
 
       var url = urlTools.buildUrl(options);
-      function err(msg, status, text) {
+      function err(res, msg, status, text) {
         var err = new Error(msg);
         err.source = 'isofetcher';
         err.details = {
@@ -21,7 +21,8 @@ module.exports = function (fetch, RestUrlify) {
           statusText: text || 'Unknown',
           method: method,
           url: url,
-          options: options
+          options: options,
+          res: res
         };
         return err;
       }
@@ -30,12 +31,13 @@ module.exports = function (fetch, RestUrlify) {
           var status = res.status + ' ' + res.statusText;
           // 400 = client error, 500 = server error; we do the same thing either way
           if (res.status >= 400) {
-            throw err('HTTP ' + status, res.status, res.statusText);
+            throw err(res, 'HTTP ' + status, res.status, res.statusText);
           }
           // 300 = redirect, this should probably be followed, but is it our job? most likely
           // we are making a request to the wrong place to begin with and should fix it
           if (res.status >= 300) {
-            throw err('Unexpected redirect: ' + status + ': ' +
+            throw err(res,
+                     'Unexpected redirect: ' + status + ': ' +
                       res.headers.get('location'),
                       res.status, res.statusText);
           }
@@ -57,7 +59,7 @@ module.exports = function (fetch, RestUrlify) {
           try {
             return res.json();
           } catch (e) {
-            throw err('Unable to decode json: ' + e.message, 500, 'Internal server error');
+            throw err(res, 'Unable to decode json: ' + e.message, 500, 'Internal server error');
           }
         });
     };
